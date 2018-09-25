@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    // Good to call actions if previous state and or props have changed e.g.
+    // if (prevProps.counter.value !== this.props.counter.value) {
+    //   // Ajax call...
+    // }
+  }
+
   render() {
     console.log("Counter - Rendered");
 
