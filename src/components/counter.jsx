@@ -10,6 +10,12 @@ class Counter extends Component {
     // }
   }
 
+  componentWillUnmount() {
+    console.log("Counter - Unmount");
+    // prevent memory leaks here e.g.
+    // stop timeouts and or listeners
+  }
+
   render() {
     console.log("Counter - Rendered");
 
