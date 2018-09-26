@@ -5,10 +5,11 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
+import Movies from "./components/movies";
 
-library.add(faStroopwafel);
+library.add(faHeart, emptyHeart);
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Movies />, document.getElementById("root"));
 registerServiceWorker();
