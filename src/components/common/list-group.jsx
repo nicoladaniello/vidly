@@ -8,7 +8,7 @@ const ListGroup = props => {
       {items.map(item => (
         <li
           key={item[valueProperty]}
-          onClick={() => onItemSelect()}
+          onClick={() => onItemSelect(item)}
           className="list-group-item list-group-item-action"
         >
           {item[textProperty]}
@@ -16,6 +16,11 @@ const ListGroup = props => {
       ))}
     </ul>
   );
+};
+
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id"
 };
 
 export default ListGroup;
