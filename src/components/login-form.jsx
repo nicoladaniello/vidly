@@ -6,7 +6,8 @@ class LoginForm extends Component {
     account: {
       username: "",
       password: ""
-    }
+    },
+    errors: {}
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -15,10 +16,20 @@ class LoginForm extends Component {
     this.setState({ account });
   };
 
+  validate() {
+    return {
+      username: "Username is required"
+    };
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    const username = this.username.current.value;
-    console.log(username);
+
+    const errors = this.validate();
+    this.setState({ errors });
+    if (errors) return;
+
+    console.log("submitted");
   };
   render() {
     const { account } = this.state;
