@@ -16,11 +16,18 @@ class LoginForm extends Component {
     this.setState({ account });
   };
 
-  validate() {
-    return {
-      username: "Username is required"
-    };
-  }
+  validate = () => {
+    const errors = {};
+    const { account } = this.state;
+
+    if (account.username.trim() === "")
+      errors.username = "Username is required";
+
+    if (account.password.trim() === "")
+      errors.password = "Password is required";
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  };
 
   handleSubmit = e => {
     e.preventDefault();
