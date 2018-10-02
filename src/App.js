@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/navbar";
 import LoginForm from "./components/login-form";
+import RegistrationForm from "./components/registration-form";
 import MovieForm from "./components/movie-form";
 import Movies from "./components/movies";
 import Customers from "./components/customers";
@@ -17,6 +18,7 @@ class App extends Component {
         <main role="main" className="container">
           <Switch>
             <Route path="/login" component={LoginForm} />
+            <Route path="/registration" component={RegistrationForm} />
             <Route path="/movies/:id" component={MovieForm} />
             <Route path="/movies" component={Movies} />
             <Route path="/customers" component={Customers} />
