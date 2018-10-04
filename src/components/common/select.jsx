@@ -3,7 +3,6 @@ import React from "react";
 const Select = ({
   name,
   label,
-  value,
   options,
   optionValueProperty,
   optionNameProperty,
@@ -17,7 +16,6 @@ const Select = ({
         {...rest}
         name={name}
         id={name}
-        value={value}
         className={error ? "form-control is-invalid" : "form-control"}
       >
         <option />

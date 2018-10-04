@@ -77,13 +77,7 @@ class Form extends Component {
     );
   }
 
-  renderSelect(
-    name,
-    label,
-    options,
-    optionValueProperty = "value",
-    optionNameProperty = "name"
-  ) {
+  renderSelect(name, label, options) {
     const { data, errors } = this.state;
 
     return (
@@ -92,8 +86,7 @@ class Form extends Component {
         label={label}
         value={data[name]}
         options={options}
-        optionValueProperty={optionValueProperty}
-        optionNameProperty={optionNameProperty}
+        optionValueProperty={"_id"}
         error={errors[name]}
         onChange={this.handleChange}
       />
