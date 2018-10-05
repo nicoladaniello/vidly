@@ -1,9 +1,10 @@
 import React from "react";
 
 const Input = ({ name, label, error, ...rest }) => {
+  const renderLabel = label ? <label htmlFor={name}>{label}</label> : "";
   return (
     <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+      {renderLabel}
       <input
         {...rest}
         name={name}

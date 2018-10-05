@@ -7,6 +7,7 @@ import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+import Input from "./common/input";
 
 class Movies extends Component {
   state = {
@@ -14,7 +15,8 @@ class Movies extends Component {
     genres: [],
     pageSize: 4,
     currentPage: 1,
-    sortColumn: { path: "title", order: "asc" }
+    sortColumn: { path: "title", order: "asc" },
+    query: ""
   };
 
   componentDidMount() {
@@ -28,7 +30,8 @@ class Movies extends Component {
       currentPage,
       movies: allMovies,
       selectedGenre,
-      sortColumn
+      sortColumn,
+      query
     } = this.state;
 
     const filtered =
@@ -37,7 +40,10 @@ class Movies extends Component {
         : allMovies;
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-    const movies = paginate(sorted, currentPage, pageSize);
+    const queried = query
+      ? sorted.filter(m => m.title.toLowerCase().includes(query.toLowerCase()))
+      : sorted;
+    const movies = paginate(queried, currentPage, pageSize);
 
     return { totalCount: filtered.length, data: movies };
   };
@@ -67,6 +73,10 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
+  handleSearch = ({ currentTarget: input }) => {
+    this.setState({ query: input.value, selectedGenre: "" });
+  };
+
   render() {
     const {
       pageSize,
@@ -91,10 +101,21 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <Link to="/movies/new" className="btn btn-primary">
+          <Link
+            to="/movies/new"
+            className="btn btn-primary"
+            style={{ marginBottom: "20px" }}
+          >
             New movie
           </Link>
-          <p className="my-3">Showing {totalCount} movies in the database</p>
+          <p>Showing {totalCount} movies in the database</p>
+          <Input
+            name="search"
+            id="search"
+            value={this.state.query}
+            placeholder="Search..."
+            onChange={this.handleSearch}
+          />
           <MoviesTable
             movies={movies}
             sortColumn={sortColumn}
