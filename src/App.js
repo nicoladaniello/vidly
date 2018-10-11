@@ -9,13 +9,12 @@ import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NotFound from "./components/not-found";
 import { ToastContainer } from "react-toastify";
-import { init } from "@sentry/browser";
+import { init as initLogService } from "./services/logService";
+
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-init({
-  dsn: "https://232e8233afc2478a966f70834da9ebd6@sentry.io/1299229"
-});
+initLogService();
 
 class App extends Component {
   render() {

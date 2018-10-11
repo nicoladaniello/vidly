@@ -1,5 +1,5 @@
 import axios from "axios";
-import { captureException } from "@sentry/browser";
+import { log } from "./logService";
 import { toast } from "react-toastify";
 
 axios.interceptors.response.use(null, error => {
@@ -9,7 +9,7 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500;
 
   if (!expectedError) {
-    captureException(error);
+    log(error);
     toast.error("An unexpected error occurred.");
   }
 
