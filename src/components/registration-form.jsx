@@ -28,7 +28,16 @@ class RegistrationForm extends Form {
   };
 
   async doSubmit() {
-    await register(this.state.data);
+    try {
+      await register(this.state.data);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.email = ex.response.data;
+
+        this.setState({ errors });
+      }
+    }
   }
 
   render() {
