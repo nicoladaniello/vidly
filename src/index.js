@@ -15,6 +15,8 @@ import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
 
 library.add(faHeart, emptyHeart, faSortUp, faSortDown);
 
+console.log("SUPERMAN", process.env.REACT_APP_NAME);
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
