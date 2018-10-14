@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import ProtectedRoute from "./components/common/protectedRoute";
 import Customers from "./components/customers";
 import LoginForm from "./components/login-form";
 import Logout from "./components/logout";
@@ -14,8 +15,8 @@ import NavBar from "./components/navbar";
 import NotFound from "./components/not-found";
 import RegistrationForm from "./components/registration-form";
 import Rentals from "./components/rentals";
-import { init as initLogService } from "./services/logService";
 import auth from "./services/authService";
+import { init as initLogService } from "./services/logService";
 
 initLogService();
 
@@ -39,13 +40,7 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
             <Route path="/registration" component={RegistrationForm} />
-            <Route
-              path="/movies/:id"
-              render={props => {
-                if (!user) return <Redirect to="/login" />;
-                return <MovieForm {...props} />;
-              }}
-            />
+            <ProtectedRoute path="/movies/:id" component={MovieForm} />
             <Route
               path="/movies"
               render={props => <Movies {...props} user={user} />}
