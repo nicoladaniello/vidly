@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 
 import Customers from "./components/customers";
 import LoginForm from "./components/login-form";
+import Logout from "./components/logout";
 import MovieForm from "./components/movie-form";
 import Movies from "./components/movies";
 import NavBar from "./components/navbar";
@@ -37,6 +38,7 @@ class App extends Component {
         <main role="main" className="container">
           <Switch>
             <Route path="/login" component={LoginForm} />
+            <Route path="/logout" component={Logout} />
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/movies/:id" component={MovieForm} />
             <Route path="/movies" component={Movies} />
