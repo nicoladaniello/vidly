@@ -98,7 +98,6 @@ class Movies extends Component {
   };
 
   render() {
-    const { length: count } = this.state.movies;
     const {
       pageSize,
       currentPage,
@@ -108,9 +107,6 @@ class Movies extends Component {
       sortColumn
     } = this.state;
     const { user } = this.props;
-
-    if (count === 0) return <p>No movies to show</p>;
-
     const { totalCount, data: movies } = this.getPagedData();
 
     return (
