@@ -1,6 +1,6 @@
 import axios from "axios";
-import { log } from "./logService";
 import { toast } from "react-toastify";
+import logger from "./logService";
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -9,17 +9,22 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500;
 
   if (!expectedError) {
-    log(error);
+    logger.log(error);
     toast.error("An unexpected error occurred.");
   }
 
   return Promise.reject(error);
 });
 
+export function setJwt(jwt) {
+  axios.defaults.headers.common["x-auth-token"] = jwt;
+}
+
 export default {
   get: axios.get,
   post: axios.post,
   put: axios.put,
   patch: axios.patch,
-  delete: axios.delete
+  delete: axios.delete,
+  setJwt
 };
