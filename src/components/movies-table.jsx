@@ -19,26 +19,29 @@ class MoviesTable extends Component {
       content: movie => (
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
       )
-    },
-    {
-      key: "delete",
-      content: movie => (
-        <button
-          onClick={() => this.props.onDelete(movie)}
-          className="btn btn-danger btn-sm"
-        >
-          delete
-        </button>
-      )
     }
   ];
 
+  deleteColumn = {
+    key: "delete",
+    content: movie => (
+      <button
+        onClick={() => this.props.onDelete(movie)}
+        className="btn btn-danger btn-sm"
+      >
+        delete
+      </button>
+    )
+  };
+
+  constructor() {
+    super();
+    const user = auth.getCurrentUser();
+    if (user && user.isAdmin) this.columns.push(this.deleteColumn);
+  }
+
   render() {
     const { movies, sortColumn, onSort } = this.props;
-    const user = auth.getCurrentUser();
-
-    if (!user || !user.isAdmin)
-      this.columns = this.columns.filter(c => c.key !== "delete");
 
     return (
       <Table
