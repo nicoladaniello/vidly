@@ -26,65 +26,7 @@ class App extends Component {
       const jwt = localStorage.getItem("token");
       const user = jwtDecode(jwt);
       this.setState({ user });
-    } catch (ex) { }
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <ToastContainer />
-        <NavBar user={this.state.user} />
-        <main role="main" className="container">
-          <Switch>
-            <Route path="/login" component={LoginForm} />
-            <Route path="/registration" component={RegistrationForm} />
-            <Route path="/movies/:id" component={MovieForm} />
-            <Route path="/movies" component={Movies} />
-            <Route path="/customers" component={Customers} />
-            <Route path="/rentals" component={Rentals} />
-            <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/movies" />
-            <Redirect to="/not-found" />
-          </Switch>
-        </main>
-      </React.Fragment>
-    );
-  }
-}
-
-export default App;
-    const jwt = localStorage.getItem("token");
-    const user = jwtDecode(jwt);
-    this.setState({ user });
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <ToastContainer />
-        <NavBar user={this.state.user} />
-        <main role="main" className="container">
-          <Switch>
-            <Route path="/login" component={LoginForm} />
-            <Route path="/registration" component={RegistrationForm} />
-            <Route path="/movies/:id" component={MovieForm} />
-            <Route path="/movies" component={Movies} />
-            <Route path="/customers" component={Customers} />
-            <Route path="/rentals" component={Rentals} />
-            <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/movies" />
-            <Redirect to="/not-found" />
-          </Switch>
-        </main>
-      </React.Fragment>
-    );
-  }
-}
-
-export default App;
-    const jwt = localStorage.getItem("token");
-    const user = jwtDecode(jwt);
-    this.setState({ user });
+    } catch (ex) {}
   }
 
   render() {
