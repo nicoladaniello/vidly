@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavBar = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         Vidly
       </Link>
@@ -19,12 +19,12 @@ const NavBar = ({ user }) => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/customers">
+            <NavLink className="nav-link disabled" to="/customers" disabled>
               Customers
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/rentals">
+            <NavLink className="nav-link disabled" to="/rentals">
               Rentals
             </NavLink>
           </li>
@@ -56,6 +56,16 @@ const NavBar = ({ user }) => {
               </li>
             </React.Fragment>
           )}
+        </ul>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <a
+              className="nav-link text-warning"
+              to="https://github.com/nicoladaniello/vidly"
+            >
+              GitHub
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

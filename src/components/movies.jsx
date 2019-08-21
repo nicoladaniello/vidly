@@ -10,6 +10,7 @@ import ListGroup from "./common/list-group";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/search-box";
 import MoviesTable from "./movies-table";
+import Header from "./Header";
 
 class Movies extends Component {
   state = {
@@ -110,41 +111,64 @@ class Movies extends Component {
     const { totalCount, data: movies } = this.getPagedData();
 
     return (
-      <div className="row">
-        <div className="col-3">
-          <ListGroup
-            items={genres}
-            selectedItem={selectedGenre}
-            onItemSelect={this.handleGenreSelect}
-          />
-        </div>
-        <div className="col">
+      <React.Fragment>
+        <Header />
+        <div className="row justify-content-center">
           {user && (
-            <Link
-              to="/movies/new"
-              className="btn btn-primary"
-              style={{ marginBottom: "20px" }}
-            >
-              New movie
-            </Link>
+            <div className="col-12">
+              <p className="text-muted">
+                Welcome back{" "}
+                <span className="font-weight-bold">{user.name}</span>!
+              </p>
+            </div>
           )}
-          <p>Showing {totalCount} movies in the database</p>
-          <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <MoviesTable
-            movies={movies}
-            sortColumn={sortColumn}
-            onLike={this.handleLike}
-            onDelete={this.handleDelete}
-            onSort={this.handleSort}
-          />
-          <Pagination
-            itemsCount={totalCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
+          <div className="col-3">
+            {user && user.isAdmin && (
+              <Link
+                to="/movies/new"
+                className="btn btn-primary btn-block mb-4 shadow"
+                style={{ marginBottom: "20px" }}
+              >
+                Add a movie
+              </Link>
+            )}
+            <div className="card shadow mb-4">
+              <div className="card-header bg-white">
+                <h2 className="h5 mt-2 mb-4">Genres</h2>
+              </div>
+              <ListGroup
+                items={genres}
+                selectedItem={selectedGenre}
+                onItemSelect={this.handleGenreSelect}
+              />
+            </div>
+          </div>
+          <div className="col">
+            <div className="card shadow">
+              <div className="card-body">
+                <h2 className="h5 mb-4">Movies directory</h2>
+                <div className="alert alert-info alert-sm">
+                  Showing {totalCount} movies in the database
+                </div>
+                <SearchBox value={searchQuery} onChange={this.handleSearch} />
+                <MoviesTable
+                  movies={movies}
+                  sortColumn={sortColumn}
+                  onLike={this.handleLike}
+                  onDelete={this.handleDelete}
+                  onSort={this.handleSort}
+                />
+                <Pagination
+                  itemsCount={totalCount}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={this.handlePageChange}
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

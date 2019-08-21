@@ -17,6 +17,9 @@ import RegistrationForm from "./components/registration-form";
 import Rentals from "./components/rentals";
 import auth from "./services/authService";
 import { init as initLogService } from "./services/logService";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Admin from "./components/admin";
 
 initLogService();
 
@@ -35,7 +38,7 @@ class App extends Component {
       <React.Fragment>
         <ToastContainer />
         <NavBar user={user} />
-        <main role="main" className="container">
+        <main id="main" role="main" className="container">
           <Switch>
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
@@ -46,12 +49,17 @@ class App extends Component {
               render={props => <Movies {...props} user={user} />}
             />
             <Route path="/customers" component={Customers} />
+            <Route
+              path="/profile"
+              render={props => <Admin {...props} user={user} />}
+            />
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/movies" />
             <Redirect to="/not-found" />
           </Switch>
         </main>
+        <Footer />
       </React.Fragment>
     );
   }
